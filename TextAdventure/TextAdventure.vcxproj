@@ -128,12 +128,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractRoom.cpp" />
+    <ClCompile Include="EmptyRoom.cpp" />
+    <ClCompile Include="EncounterRoom.cpp" />
     <ClCompile Include="EntranceRoom.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="TextAdventure.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractRoom.h" />
+    <ClInclude Include="EmptyRoom.h" />
+    <ClInclude Include="EncounterRoom.h" />
     <ClInclude Include="EntranceRoom.h" />
+    <ClInclude Include="Map.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

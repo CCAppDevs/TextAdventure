@@ -1,16 +1,16 @@
 #include <iostream>
-#include "EntranceRoom.h"
+#include "Map.h"
 
 // interface
 // map or game board
 // characters and enemies
 // randomness
 
+using namespace std;
+
 int main()
 {
-	EntranceRoom room = EntranceRoom("This is the entrance.");
+	Map myMap = Map(25, 25);
 
-	std::cout << room.ToString();
-	std::cout << "You encountered a new room!\n";
-	std::cout << room.GetDescription() << "\n";
+	cout << myMap.ToString();
 }
