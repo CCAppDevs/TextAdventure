@@ -8,6 +8,9 @@
 // characters and enemies
 // randomness
 
+// https://stackoverflow.com/questions/34842526/update-console-without-flickering-c
+// this link has information on what causes the flickering and how to fix it (and even goes into advanced ideas like double buffering)
+
 using namespace std;
 
 #define KEY_UP 72
