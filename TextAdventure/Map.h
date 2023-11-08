@@ -50,6 +50,11 @@ private:
 public:
 	Map(int sizeX, int sizeY);
 
+	void MoveX(int x);
+	void MoveY(int y);
+
+	shared_ptr<AbstractRoom> GetCurrentRoom();
+
 	std::string ToString();
 };
 

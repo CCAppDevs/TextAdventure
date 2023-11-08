@@ -39,6 +39,31 @@ Map::Map(int sizeX, int sizeY)
 	}
 }
 
+void Map::MoveX(int x)
+{
+	if (x > 0 && PlayerPosition.x < Rooms[0].size() - 1) {
+		PlayerPosition.x += x;
+	}
+	else if (x < 0 && PlayerPosition.x > 0) {
+		PlayerPosition.x += x;
+	}
+}
+
+void Map::MoveY(int y)
+{
+	if (y > 0 && PlayerPosition.y < Rooms.size() - 1) {
+		PlayerPosition.y += y;
+	}
+	else if (y < 0 && PlayerPosition.y > 0) {
+		PlayerPosition.y += y;
+	}
+}
+
+shared_ptr<AbstractRoom> Map::GetCurrentRoom()
+{
+	return Rooms[PlayerPosition.y][PlayerPosition.x];
+}
+
 std::string Map::ToString()
 {
 	// we need to loop through the array and capture the toString of each room individual
@@ -46,10 +71,18 @@ std::string Map::ToString()
 
 	for (int i = 0; i < Rooms.size(); i++) {
 		for (int j = 0; j < Rooms[i].size(); j++) {
-			output += Rooms[i][j]->ToString();
+			if (PlayerPosition.x == j && PlayerPosition.y == i) {
+				output += "[P]";
+			}
+			else {
+				output += Rooms[i][j]->ToString();
+			}
+			
 		}
 		output += "\n";
 	}
+
+	output += "\n" + GetCurrentRoom()->GetDescription() + "\n";
 
 	return output;
 }
