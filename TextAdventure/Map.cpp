@@ -39,6 +39,36 @@ Map::Map(int sizeX, int sizeY)
 	}
 }
 
+void Map::MoveX(int amount)
+{
+	// at the left side, cant go negative
+	// at the right side, cant go positive
+
+	// move right (+1)
+	if (amount > 0 && PlayerPosition.x < Rooms[0].size() - 1) {
+		PlayerPosition.x += amount;
+	}
+	else if (amount < 0 && PlayerPosition.x > 0) { // move left (-1)
+		PlayerPosition.x += amount;
+	}
+}
+
+void Map::MoveY(int amount)
+{
+	// move down (+1)
+	if (amount > 0 && PlayerPosition.y < Rooms.size() - 1) {
+		PlayerPosition.y += amount;
+	}
+	else if (amount < 0 && PlayerPosition.y > 0) { // move up (-1)
+		PlayerPosition.y += amount;
+	}
+}
+
+std::string Map::GetCurrentRoomDescription()
+{
+	return Rooms[PlayerPosition.y][PlayerPosition.x]->GetDescription();
+}
+
 std::string Map::ToString()
 {
 	// we need to loop through the array and capture the toString of each room individual
@@ -46,10 +76,17 @@ std::string Map::ToString()
 
 	for (int i = 0; i < Rooms.size(); i++) {
 		for (int j = 0; j < Rooms[i].size(); j++) {
-			output += Rooms[i][j]->ToString();
+			if (PlayerPosition.x == j && PlayerPosition.y == i) {
+				output += "[P]";
+			}
+			else {
+				output += Rooms[i][j]->ToString();
+			}
 		}
 		output += "\n";
 	}
+
+	output += "\n" + GetCurrentRoomDescription();
 
 	return output;
 }

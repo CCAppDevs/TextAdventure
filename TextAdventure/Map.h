@@ -50,6 +50,12 @@ private:
 public:
 	Map(int sizeX, int sizeY);
 
+	// player movement
+	void MoveX(int amount);
+	void MoveY(int amount);
+
+	std::string GetCurrentRoomDescription();
+
 	std::string ToString();
 };
 
