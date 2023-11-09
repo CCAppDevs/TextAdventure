@@ -45,6 +45,8 @@ void Map::MoveX(int amount)
 	// at the right side, cant go positive
 
 	// move right (+1)
+	PreviousPlayerPosition = PlayerPosition;
+
 	if (amount > 0 && PlayerPosition.x < Rooms[0].size() - 1) {
 		PlayerPosition.x += amount;
 	}
@@ -55,6 +57,8 @@ void Map::MoveX(int amount)
 
 void Map::MoveY(int amount)
 {
+	PreviousPlayerPosition = PlayerPosition;
+
 	// move down (+1)
 	if (amount > 0 && PlayerPosition.y < Rooms.size() - 1) {
 		PlayerPosition.y += amount;
@@ -64,9 +68,17 @@ void Map::MoveY(int amount)
 	}
 }
 
+// checking the previous room description and comparing the current room and padding any missing characters
 std::string Map::GetCurrentRoomDescription()
 {
-	return Rooms[PlayerPosition.y][PlayerPosition.x]->GetDescription();
+	int prevDescLength = Rooms[PreviousPlayerPosition.y][PreviousPlayerPosition.x]->GetDescription().length();
+	std::string currentDesc = Rooms[PlayerPosition.y][PlayerPosition.x]->GetDescription();
+
+	if (currentDesc.length() < prevDescLength) {
+		currentDesc.append(prevDescLength - currentDesc.length(), ' ');
+	}
+
+	return currentDesc;
 }
 
 std::string Map::ToString()
@@ -87,6 +99,8 @@ std::string Map::ToString()
 	}
 
 	output += "\n" + GetCurrentRoomDescription();
+
+	output += "\n\n" + Rooms[PlayerPosition.y][PlayerPosition.x]->Execute();
 
 	return output;
 }

@@ -26,5 +26,6 @@ public:
 	void SetDescription(std::string desc);
 
 	virtual std::string ToString() = 0; // draw the cell of the room
+	virtual std::string Execute();
 };
 

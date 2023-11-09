@@ -14,6 +14,9 @@ using namespace std;
 #define KEY_DOWN 80
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
+#define QUIT 113
+#define ATTACK 97
+#define RUN 114
 
 void ShowConsoleCursor(bool showFlag)
 {
@@ -45,6 +48,8 @@ int main()
 		// draw statement
 		cout << myMap.ToString();
 
+		cout << "\nControls: Up, Down, Left, Right, (A)ttack, (R)un, (Q)uit\n";
+
 		switch ((c = _getch())) {
 		case KEY_UP:
 			myMap.MoveY(-1);
@@ -57,6 +62,13 @@ int main()
 			break;
 		case KEY_RIGHT:
 			myMap.MoveX(1);
+			break;
+		case QUIT:
+			isPlaying = false;
+			break;
+		case ATTACK:
+			break;
+		case RUN:
 			break;
 		default:
 			// not arrow

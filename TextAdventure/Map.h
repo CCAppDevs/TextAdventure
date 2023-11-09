@@ -39,6 +39,7 @@ class Map
 {
 private:
 	Coord PlayerPosition;
+	Coord PreviousPlayerPosition;
 	vector<vector<shared_ptr<AbstractRoom>>> Rooms;
 
 	shared_ptr<EntranceRoom> SharedEntranceRoom;

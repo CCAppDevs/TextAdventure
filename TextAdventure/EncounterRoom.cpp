@@ -3,11 +3,12 @@
 EncounterRoom::EncounterRoom(std::string desc, std::string monsterType) : AbstractRoom(desc)
 {
     MonsterType = monsterType;
+    Description += MonsterType;
 }
 
-void EncounterRoom::Execute()
+std::string EncounterRoom::Execute()
 {
-    std::cout << "You have triggered an encounter\n";
+    return "You have triggered an encounter";
 }
 
 std::string EncounterRoom::ToString()
