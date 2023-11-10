@@ -38,6 +38,7 @@ struct Coord {
 class Map
 {
 private:
+	int SizeX, SizeY;
 	Coord PlayerPosition;
 	vector<vector<shared_ptr<AbstractRoom>>> Rooms;
 
@@ -50,11 +51,16 @@ private:
 public:
 	Map(int sizeX, int sizeY);
 
+	const int GetSizeX() { return SizeX; }
+	const int GetSizeY() { return SizeY; }
+
 	// player movement
 	void MoveX(int amount);
 	void MoveY(int amount);
 
 	std::string GetCurrentRoomDescription();
+
+	shared_ptr<AbstractRoom> GetCurrentRoom() { return Rooms[PlayerPosition.y][PlayerPosition.x]; }
 
 	std::string ToString();
 };

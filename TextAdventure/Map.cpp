@@ -11,9 +11,11 @@ int Map::GetRandomNumber(int min, int max)
 
 Map::Map(int sizeX, int sizeY)
 {
+	SizeX = sizeX;
+	SizeY = sizeY;
 
 	SharedEntranceRoom = make_shared<EntranceRoom>("The stairs lead you down into the dungeon...");
-	SharedEmptyRoom = make_shared<EmptyRoom>("This room is dusty but otherwise empty.");
+	SharedEmptyRoom = make_shared<EmptyRoom>("This room is dusty but otherwise empty. This room is dusty but otherwise empty. This room is dusty but otherwise empty. This room is dusty but otherwise empty. This room is dusty but otherwise empty. This room is dusty but otherwise empty. This room is dusty but otherwise empty. This room is dusty but otherwise empty. ");
 	SharedEncounterRoom = make_shared<EncounterRoom>("You walk into the room and are suddenly faced with a ", "Goblin");
 
 	// generate the map
@@ -85,8 +87,6 @@ std::string Map::ToString()
 		}
 		output += "\n";
 	}
-
-	output += "\n" + GetCurrentRoomDescription();
 
 	return output;
 }

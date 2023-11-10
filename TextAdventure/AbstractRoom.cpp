@@ -14,3 +14,8 @@ void AbstractRoom::SetDescription(std::string desc)
 {
     Description = desc;
 }
+
+bool AbstractRoom::Execute()
+{
+    return false;
+}
