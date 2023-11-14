@@ -33,6 +33,15 @@
     <ClCompile Include="EncounterRoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="olcConsoleGameEngineOOP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EColour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractRoom.h">
@@ -48,6 +57,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EncounterRoom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="olcConsoleGameEngineOOP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EColour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
