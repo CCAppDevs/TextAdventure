@@ -9,6 +9,8 @@ protected:
 
 public:
     EmptyRoom(std::string desc);
-    std::string ToString() override;
+    
+    short ToShort() override;
+
 };
 

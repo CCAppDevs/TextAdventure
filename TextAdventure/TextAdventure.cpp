@@ -6,7 +6,7 @@ int main()
 {
 	Game myGame;
 
-	myGame.ConstructConsole(80, 60, 1, 1);
+	myGame.ConstructConsole(80, 60, 8, 8);
 
 	myGame.Start();
 }

@@ -11,7 +11,12 @@ std::string EncounterRoom::Execute()
     return "You have triggered an encounter";
 }
 
-std::string EncounterRoom::ToString()
+short EncounterRoom::ToShort()
 {
-    return "[M]";
+    return L'M';
+}
+
+COLOUR EncounterRoom::GetColour()
+{
+    return FG_RED;
 }

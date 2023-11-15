@@ -38,8 +38,6 @@ struct Coord {
 class Map
 {
 private:
-	Coord PlayerPosition;
-	Coord PreviousPlayerPosition;
 	vector<vector<shared_ptr<AbstractRoom>>> Rooms;
 
 	shared_ptr<EntranceRoom> SharedEntranceRoom;
@@ -51,12 +49,6 @@ private:
 public:
 	Map(int sizeX, int sizeY);
 
-	// player movement
-	void MoveX(int amount);
-	void MoveY(int amount);
-
-	std::string GetCurrentRoomDescription();
-
-	std::string ToString();
+	AbstractRoom& GetRoom(int x, int y);
 };
 

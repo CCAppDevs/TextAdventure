@@ -4,7 +4,7 @@ EmptyRoom::EmptyRoom(std::string desc) : AbstractRoom(desc)
 {
 }
 
-std::string EmptyRoom::ToString()
+short EmptyRoom::ToShort()
 {
-    return "[.]";
+    return L' ';
 }

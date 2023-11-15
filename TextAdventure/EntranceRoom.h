@@ -6,6 +6,8 @@ class EntranceRoom :
 public:
     EntranceRoom(std::string desc);
 
-    std::string ToString();
+    // Inherited via AbstractRoom
+    short ToShort() override;
+    COLOUR GetColour() override;
 };
 

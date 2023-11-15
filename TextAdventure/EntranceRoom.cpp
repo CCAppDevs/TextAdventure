@@ -4,7 +4,12 @@ EntranceRoom::EntranceRoom(std::string desc) : AbstractRoom(desc)
 {
 }
 
-std::string EntranceRoom::ToString()
+short EntranceRoom::ToShort()
 {
-    return "[S]";
+    return L'S';
+}
+
+COLOUR EntranceRoom::GetColour()
+{
+    return FG_YELLOW;
 }

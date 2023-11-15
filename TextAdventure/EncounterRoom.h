@@ -14,6 +14,7 @@ public:
     std::string Execute() override;
 
     // Inherited via AbstractRoom
-    std::string ToString() override;
+    short ToShort() override;
+    COLOUR GetColour() override;
 };
 

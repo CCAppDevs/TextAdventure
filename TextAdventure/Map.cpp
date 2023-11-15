@@ -39,68 +39,8 @@ Map::Map(int sizeX, int sizeY)
 	}
 }
 
-void Map::MoveX(int amount)
+AbstractRoom& Map::GetRoom(int x, int y)
 {
-	// at the left side, cant go negative
-	// at the right side, cant go positive
-
-	// move right (+1)
-	PreviousPlayerPosition = PlayerPosition;
-
-	if (amount > 0 && PlayerPosition.x < Rooms[0].size() - 1) {
-		PlayerPosition.x += amount;
-	}
-	else if (amount < 0 && PlayerPosition.x > 0) { // move left (-1)
-		PlayerPosition.x += amount;
-	}
-}
-
-void Map::MoveY(int amount)
-{
-	PreviousPlayerPosition = PlayerPosition;
-
-	// move down (+1)
-	if (amount > 0 && PlayerPosition.y < Rooms.size() - 1) {
-		PlayerPosition.y += amount;
-	}
-	else if (amount < 0 && PlayerPosition.y > 0) { // move up (-1)
-		PlayerPosition.y += amount;
-	}
-}
-
-// checking the previous room description and comparing the current room and padding any missing characters
-std::string Map::GetCurrentRoomDescription()
-{
-	int prevDescLength = Rooms[PreviousPlayerPosition.y][PreviousPlayerPosition.x]->GetDescription().length();
-	std::string currentDesc = Rooms[PlayerPosition.y][PlayerPosition.x]->GetDescription();
-
-	if (currentDesc.length() < prevDescLength) {
-		currentDesc.append(prevDescLength - currentDesc.length(), ' ');
-	}
-
-	return currentDesc;
-}
-
-std::string Map::ToString()
-{
-	// we need to loop through the array and capture the toString of each room individual
-	std::string output = "";
-
-	for (int i = 0; i < Rooms.size(); i++) {
-		for (int j = 0; j < Rooms[i].size(); j++) {
-			if (PlayerPosition.x == j && PlayerPosition.y == i) {
-				output += "[P]";
-			}
-			else {
-				output += Rooms[i][j]->ToString();
-			}
-		}
-		output += "\n";
-	}
-
-	output += "\n" + GetCurrentRoomDescription();
-
-	output += "\n\n" + Rooms[PlayerPosition.y][PlayerPosition.x]->Execute();
-
-	return output;
+	// TODO: insert return statement here
+	return *Rooms[y][x];
 }

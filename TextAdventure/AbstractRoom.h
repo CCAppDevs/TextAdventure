@@ -1,15 +1,6 @@
 #pragma once
 #include <string>
-
-/*
-
-[0][0][0][0][0]
-[0][1][2][2][0]
-[0][2][3][2][0]
-[0][4][2][9][0]
-[0][0][0][0][0]
-
-*/
+#include "EColour.h"
 
 class AbstractRoom
 {
@@ -25,7 +16,9 @@ public:
 	std::string GetDescription();
 	void SetDescription(std::string desc);
 
-	virtual std::string ToString() = 0; // draw the cell of the room
 	virtual std::string Execute();
+
+	virtual short ToShort() = 0;
+	virtual COLOUR GetColour();
 };
 

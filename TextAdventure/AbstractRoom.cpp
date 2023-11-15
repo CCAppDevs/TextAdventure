@@ -19,3 +19,8 @@ std::string AbstractRoom::Execute()
 {
     return "Nothing Happens";
 }
+
+COLOUR AbstractRoom::GetColour()
+{
+    return FG_DARK_GREY;
+}
