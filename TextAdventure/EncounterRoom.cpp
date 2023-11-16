@@ -6,10 +6,12 @@ EncounterRoom::EncounterRoom(std::string desc, std::string monsterType) : Abstra
     Description += MonsterType;
 }
 
-std::string EncounterRoom::Execute()
+bool EncounterRoom::Execute(Game& myGame)
 {
-    return "You have triggered an encounter";
+    myGame.StartEncounter("Fighting a goblin.");
+    return false;
 }
+
 
 short EncounterRoom::ToShort()
 {

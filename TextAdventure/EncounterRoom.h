@@ -11,7 +11,7 @@ private:
 public:
     EncounterRoom(std::string desc, std::string monsterType);
 
-    std::string Execute() override;
+    bool Execute(Game& myGame) override;
 
     // Inherited via AbstractRoom
     short ToShort() override;

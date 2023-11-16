@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "EColour.h"
+#include "Game.h"
 
 class AbstractRoom
 {
@@ -16,7 +17,7 @@ public:
 	std::string GetDescription();
 	void SetDescription(std::string desc);
 
-	virtual std::string Execute();
+	virtual bool Execute(Game& myGame);
 
 	virtual short ToShort() = 0;
 	virtual COLOUR GetColour();

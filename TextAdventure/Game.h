@@ -6,6 +6,7 @@ class Game : public olcConsoleGameEngineOOP
 {
 public:
 	Game();
+	bool StartEncounter(std::string encounterText);
 
 protected:
 
@@ -26,5 +27,14 @@ private:
 	int mapX;
 	int mapY;
 	Map* myMap;
+
+
+	// Room Tools
+	// start combat
+	// end combat
+	// deal damage to the player
+	// display a puzzle
+	// check for solution to puzzle
+	// output text to the buffer
 };
 

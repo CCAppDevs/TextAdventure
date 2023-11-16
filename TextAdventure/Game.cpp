@@ -4,6 +4,12 @@ Game::Game()
 {
 }
 
+bool Game::StartEncounter(std::string encounterText)
+{
+    DrawString(1, 43, std::wstring(encounterText.begin(), encounterText.end()).c_str());
+    return true;
+}
+
 bool Game::OnUserCreate()
 {
     playerX = 2;
@@ -19,26 +25,23 @@ bool Game::OnUserCreate()
 
 bool Game::OnUserUpdate(float fElapesedTime)
 {
-    //text = "";
+    text = "";
+    
     // get user input
     if (m_keys[VK_LEFT].bPressed) {
-        // moveX(-1);
-        text = "Left";
+        moveX(-1);
     }
 
     if (m_keys[VK_RIGHT].bPressed) {
-        // moveX(1);
-        text = "Right";
+        moveX(1);
     }
 
     if (m_keys[VK_UP].bPressed) {
-        // moveY(-1);
-        text = "Up";
+        moveY(-1);
     }
 
     if (m_keys[VK_DOWN].bPressed) {
-        // moveY(1);
-        text = "Down";
+        moveY(1);
     }
 
 
@@ -54,19 +57,25 @@ bool Game::OnUserUpdate(float fElapesedTime)
         }
     }
 
-    // draw the player
-
+    // draw the player on the map
+    Fill(playerX, playerY, playerX + 1, playerY + 1, L'P', FG_WHITE);
 
     // draw text
-
+    // TODO: set up a queue or stack to read out multiple lines of text
+    text = myMap->GetRoom(playerX - 2, playerY - 2).GetDescription();
     DrawString(1, 42, std::wstring(text.begin(), text.end()).c_str());
+
+    // draw the player options
+    DrawString(1, 50, L"Options: Arrows to Move, A to Atack, R to Run, Q to Quit");
     
     return true;
 }
 
 void Game::moveX(int amount)
 {
-    playerX += amount;
+    if (playerX + amount >= 2 && playerX + amount < mapX + 2) {
+        playerX += amount;
+    }
 }
 
 void Game::moveY(int amount)

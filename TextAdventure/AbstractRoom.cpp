@@ -15,9 +15,9 @@ void AbstractRoom::SetDescription(std::string desc)
     Description = desc;
 }
 
-std::string AbstractRoom::Execute()
+bool AbstractRoom::Execute(Game& myGame)
 {
-    return "Nothing Happens";
+    return true;
 }
 
 COLOUR AbstractRoom::GetColour()
