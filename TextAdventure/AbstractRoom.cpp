@@ -1,4 +1,5 @@
 #include "AbstractRoom.h"
+#include "Game.h"
 
 AbstractRoom::AbstractRoom(std::string desc)
 {

@@ -1,4 +1,5 @@
 #include "EncounterRoom.h"
+#include "Game.h"
 
 EncounterRoom::EncounterRoom(std::string desc, std::string monsterType) : AbstractRoom(desc)
 {

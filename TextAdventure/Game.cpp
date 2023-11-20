@@ -44,6 +44,10 @@ bool Game::OnUserUpdate(float fElapesedTime)
         moveY(1);
     }
 
+	if (GetKey(L'A').bPressed) {
+		text = "A";
+	}
+
 
     // clear the screen
     Fill(0, 0, m_nScreenWidth, m_nScreenHeight, L' ', 0);
@@ -68,6 +72,9 @@ bool Game::OnUserUpdate(float fElapesedTime)
     // draw the player options
     DrawString(1, 50, L"Options: Arrows to Move, A to Atack, R to Run, Q to Quit");
     
+	// execute the room
+	myMap->GetRoom(playerX - 2, playerY - 2).Execute(*this);
+
     return true;
 }
 
