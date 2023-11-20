@@ -2,6 +2,8 @@
 #include "AbstractRoom.h"
 #include <iostream>
 
+class Game;
+
 class EncounterRoom :
     public AbstractRoom
 {

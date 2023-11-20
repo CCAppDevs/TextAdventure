@@ -1,6 +1,7 @@
 #pragma once
 #include "olcConsoleGameEngineOOP.h"
 #include "Map.h"
+#include <queue>
 
 class Game : public olcConsoleGameEngineOOP
 {
@@ -21,7 +22,12 @@ private:
 	void moveX(int amount);
 	void moveY(int amount);
 
+	// output variables
 	std::string text;
+
+	float OutputTimeThreshold;
+	float OutputTimeElapsed;
+	std::queue<std::string> Output;
 
 	// map
 	int mapX;
@@ -35,6 +41,9 @@ private:
 	// deal damage to the player
 	// display a puzzle
 	// check for solution to puzzle
+	
 	// output text to the buffer
+	void QueueOutputText(std::string message);
+	void DrawTextOutput(float fElapsedTime);
 };
 
