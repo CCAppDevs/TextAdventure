@@ -2,12 +2,15 @@
 #include "olcConsoleGameEngineOOP.h"
 #include "Map.h"
 #include <queue>
+#include "Player.h"
+#include "Enemy.h"
 
 class Game : public olcConsoleGameEngineOOP
 {
 public:
 	Game();
 	bool StartEncounter(std::string encounterText);
+	void StartCombat(Enemy& theEnemy);
 
 protected:
 
@@ -18,6 +21,8 @@ private:
 	// player
 	int playerX;
 	int playerY;
+
+	Player myPlayer;
 
 	void moveX(int amount);
 	void moveY(int amount);
@@ -36,6 +41,8 @@ private:
 
 
 	// Room Tools
+	AbstractRoom& GetCurrentRoom();
+
 	// start combat
 	// end combat
 	// deal damage to the player

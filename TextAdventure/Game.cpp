@@ -6,8 +6,28 @@ Game::Game()
 
 bool Game::StartEncounter(std::string encounterText)
 {
-    DrawString(1, 43, std::wstring(encounterText.begin(), encounterText.end()).c_str());
+    QueueOutputText(encounterText);
     return true;
+}
+
+void Game::StartCombat(Enemy& theEnemy)
+{
+    // is it an ambush
+        // enemy deals damage
+    // ask player for action
+        // attack
+            // get damage from player
+            // use damage to deal damage to monster
+            // allow monster to counter attack if still alive
+            // check for monster death
+                // if dead end encounter
+            // check for player death
+                // if dead end game
+        // run
+            // player takes a single hit from the enemy
+            // check to see if run is successfull
+                // end encounter, mark as incomplete
+                // push player to adjacent spot
 }
 
 bool Game::OnUserCreate()
@@ -15,10 +35,12 @@ bool Game::OnUserCreate()
     playerX = 2;
     playerY = 2;
 
+    myPlayer = Player("Arthur", 100.f, 1.0f, 10.0f);
+
     mapX = 76;
     mapY = 38;
 
-    OutputTimeThreshold = 30.0f;
+    OutputTimeThreshold = 10.0f;
     OutputTimeElapsed = 0.0f;
 
     myMap = new Map(mapX, mapY);
@@ -78,8 +100,11 @@ bool Game::OnUserUpdate(float fElapesedTime)
 
     // draw text
     // TODO: set up a queue or stack to read out multiple lines of text
-    text = myMap->GetRoom(playerX - 2, playerY - 2).GetDescription();
+    text = GetCurrentRoom().GetDescription();
     DrawString(1, 42, std::wstring(text.begin(), text.end()).c_str());
+
+    // check room for execution
+    GetCurrentRoom().Execute(*this);
 
     // draw output
     DrawTextOutput(fElapesedTime);
@@ -102,6 +127,11 @@ void Game::moveY(int amount)
     if (playerY + amount >= 2 && playerY + amount < mapY + 2) {
         playerY += amount;
     }
+}
+
+AbstractRoom& Game::GetCurrentRoom()
+{
+    return myMap->GetRoom(playerX - 2, playerY - 2);
 }
 
 void Game::QueueOutputText(std::string message)

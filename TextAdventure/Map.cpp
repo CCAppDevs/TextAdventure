@@ -28,7 +28,7 @@ Map::Map(int sizeX, int sizeY)
 			if (i == 0 && j == 0) {
 				Rooms[i].push_back(SharedEntranceRoom);
 			} else if (roomChoice > 9) {
-				Rooms[i].push_back(SharedEncounterRoom);
+				Rooms[i].push_back(make_shared<EncounterRoom>("You stumble upon a ", "goblin"));
 			/*}
 			else if (roomChoice > 2) {
 				Rooms[i].push_back(SharedEmptyRoom);*/

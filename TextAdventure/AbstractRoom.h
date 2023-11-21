@@ -11,6 +11,7 @@ private:
 	 
 protected:
 	std::string Description;
+	bool hasBeenVisited;
 
 public:
 	AbstractRoom(std::string desc);
@@ -22,5 +23,8 @@ public:
 
 	virtual short ToShort() = 0;
 	virtual COLOUR GetColour();
+
+	virtual bool GetHasBeenVisited();
+	virtual void SetHasBeenVisited(bool newState);
 };
 

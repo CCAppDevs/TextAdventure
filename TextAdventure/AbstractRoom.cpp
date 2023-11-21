@@ -4,6 +4,7 @@
 AbstractRoom::AbstractRoom(std::string desc)
 {
     Description = desc;
+    hasBeenVisited = false;
 }
 
 std::string AbstractRoom::GetDescription()
@@ -24,4 +25,14 @@ bool AbstractRoom::Execute(Game& myGame)
 COLOUR AbstractRoom::GetColour()
 {
     return FG_DARK_GREY;
+}
+
+bool AbstractRoom::GetHasBeenVisited()
+{
+    return hasBeenVisited;
+}
+
+void AbstractRoom::SetHasBeenVisited(bool newState)
+{
+    hasBeenVisited = newState;
 }

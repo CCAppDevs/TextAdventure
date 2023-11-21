@@ -127,25 +127,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractCharacter.cpp" />
     <ClCompile Include="AbstractRoom.cpp" />
     <ClCompile Include="EColour.cpp" />
     <ClCompile Include="EmptyRoom.cpp" />
     <ClCompile Include="EncounterRoom.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EntranceRoom.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="olcConsoleGameEngineOOP.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextAdventure.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractCharacter.h" />
     <ClInclude Include="AbstractRoom.h" />
     <ClInclude Include="EColour.h" />
     <ClInclude Include="EmptyRoom.h" />
     <ClInclude Include="EncounterRoom.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="EntranceRoom.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="olcConsoleGameEngineOOP.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

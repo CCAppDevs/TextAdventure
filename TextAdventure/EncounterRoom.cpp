@@ -9,8 +9,12 @@ EncounterRoom::EncounterRoom(std::string desc, std::string monsterType) : Abstra
 
 bool EncounterRoom::Execute(Game& myGame)
 {
-    myGame.StartEncounter("Fighting a goblin.");
-    return false;
+    if (!hasBeenVisited) {
+        myGame.StartEncounter("Fighting a goblin.");
+        SetHasBeenVisited(true);
+    }
+    
+    return hasBeenVisited;
 }
 
 
