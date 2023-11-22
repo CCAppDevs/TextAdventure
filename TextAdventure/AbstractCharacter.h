@@ -12,10 +12,13 @@ protected:
 	float DamageMax;
 
 public:
+	AbstractCharacter();
 	AbstractCharacter(std::string name, float maxHealth, float minDamage, float maxDamage);
 
 	float RollForDamage();
 	virtual void TakeDamage(float amount) = 0;
+
+	std::string GetName();
 
 	float GetHealth();
 	float GetMaxHealth();

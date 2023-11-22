@@ -1,5 +1,9 @@
 #include "Enemy.h"
 
+Enemy::Enemy() : AbstractCharacter()
+{
+}
+
 Enemy::Enemy(std::string name, float maxHealth, float minDamage, float maxDamage)
 	: AbstractCharacter(name, maxHealth, minDamage, maxDamage)
 {

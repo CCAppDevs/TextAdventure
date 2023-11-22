@@ -1,16 +1,16 @@
 #include "EncounterRoom.h"
 #include "Game.h"
 
-EncounterRoom::EncounterRoom(std::string desc, std::string monsterType) : AbstractRoom(desc)
+EncounterRoom::EncounterRoom(std::string desc, std::string name, float health, float minDamage, float maxDamage)
+    : AbstractRoom(desc)
 {
-    MonsterType = monsterType;
-    Description += MonsterType;
+    theEnemy = new Enemy(name, health, minDamage, maxDamage);
 }
 
 bool EncounterRoom::Execute(Game& myGame)
 {
     if (!hasBeenVisited) {
-        myGame.StartEncounter("Fighting a goblin.");
+        myGame.StartCombat(*theEnemy);
         SetHasBeenVisited(true);
     }
     

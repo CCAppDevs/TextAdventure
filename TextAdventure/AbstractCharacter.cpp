@@ -1,5 +1,14 @@
 #include "AbstractCharacter.h"
 
+AbstractCharacter::AbstractCharacter()
+{
+	Name = "";
+	Health = 100.f;
+	MaxHealth = 100.f;
+	DamageMin = 1.f;
+	DamageMax = 10.f;
+}
+
 AbstractCharacter::AbstractCharacter(std::string name, float maxHealth, float minDamage, float maxDamage)
 {
 	Name = name;
@@ -13,6 +22,11 @@ float AbstractCharacter::RollForDamage()
 {
 	// todo add random roll for damage
 	return 0.0f;
+}
+
+std::string AbstractCharacter::GetName()
+{
+	return Name;
 }
 
 float AbstractCharacter::GetHealth()

@@ -44,6 +44,10 @@ private:
 	AbstractRoom& GetCurrentRoom();
 
 	// start combat
+	bool isEngaged;
+	void MakeAttack();
+	void Run();
+
 	// end combat
 	// deal damage to the player
 	// display a puzzle

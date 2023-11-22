@@ -1,5 +1,9 @@
 #include "Player.h"
 
+Player::Player() : AbstractCharacter()
+{
+}
+
 Player::Player(std::string name, float maxHealth, float minDamage, float maxDamage)
 	: AbstractCharacter(name, maxHealth, minDamage, maxDamage)
 {

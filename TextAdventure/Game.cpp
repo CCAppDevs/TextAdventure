@@ -2,6 +2,7 @@
 
 Game::Game()
 {
+    myPlayer = Player("Arthur", 100, 1, 10);
 }
 
 bool Game::StartEncounter(std::string encounterText)
@@ -15,6 +16,12 @@ void Game::StartCombat(Enemy& theEnemy)
     // is it an ambush
         // enemy deals damage
     // ask player for action
+    isEngaged = true;
+
+
+    QueueOutputText("You have encountered an enemy. " + theEnemy.GetName() + " is preparing to attack!");
+    QueueOutputText("Do you want to (A)ttack or (R)un?");
+    
         // attack
             // get damage from player
             // use damage to deal damage to monster
@@ -35,10 +42,10 @@ bool Game::OnUserCreate()
     playerX = 2;
     playerY = 2;
 
-    myPlayer = Player("Arthur", 100.f, 1.0f, 10.0f);
-
     mapX = 76;
     mapY = 38;
+
+    isEngaged = false;
 
     OutputTimeThreshold = 10.0f;
     OutputTimeElapsed = 0.0f;
@@ -51,32 +58,37 @@ bool Game::OnUserCreate()
 bool Game::OnUserUpdate(float fElapesedTime)
 {
     text = "";
+
+    if (!isEngaged) {
+        // get user input
+        if (m_keys[VK_LEFT].bPressed) {
+            moveX(-1);
+        }
+
+        if (m_keys[VK_RIGHT].bPressed) {
+            moveX(1);
+        }
+
+        if (m_keys[VK_UP].bPressed) {
+            moveY(-1);
+        }
+
+        if (m_keys[VK_DOWN].bPressed) {
+            moveY(1);
+        }
+    }
     
-    // get user input
-    if (m_keys[VK_LEFT].bPressed) {
-        moveX(-1);
-    }
+    
+    if (isEngaged) {
+        if (GetKey(L'A').bPressed) {
+            MakeAttack();
+        }
 
-    if (m_keys[VK_RIGHT].bPressed) {
-        moveX(1);
+        if (GetKey(L'R').bPressed) {
+            Run();
+        }
     }
-
-    if (m_keys[VK_UP].bPressed) {
-        moveY(-1);
-    }
-
-    if (m_keys[VK_DOWN].bPressed) {
-        moveY(1);
-    }
-
-    if (GetKey(L'A').bPressed) {
-        QueueOutputText("Attack 1.");
-    }
-
-    if (GetKey(L'R').bPressed) {
-        QueueOutputText("Running");
-        // do running things
-    }
+    
 
     if (GetKey(L'Q').bPressed) {
         return false;
@@ -104,13 +116,15 @@ bool Game::OnUserUpdate(float fElapesedTime)
     DrawString(1, 42, std::wstring(text.begin(), text.end()).c_str());
 
     // check room for execution
-    GetCurrentRoom().Execute(*this);
-
+    if (!isEngaged) {
+        GetCurrentRoom().Execute(*this);
+    }
+    
     // draw output
     DrawTextOutput(fElapesedTime);
 
     // draw the player options
-    DrawString(1, 50, L"Options: Arrows to Move, A to Atack, R to Run, Q to Quit");
+    //DrawString(1, 50, L"Options: Arrows to Move, A to Atack, R to Run, Q to Quit");
     
     return true;
 }
@@ -132,6 +146,14 @@ void Game::moveY(int amount)
 AbstractRoom& Game::GetCurrentRoom()
 {
     return myMap->GetRoom(playerX - 2, playerY - 2);
+}
+
+void Game::MakeAttack()
+{
+}
+
+void Game::Run()
+{
 }
 
 void Game::QueueOutputText(std::string message)

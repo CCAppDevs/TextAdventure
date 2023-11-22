@@ -4,6 +4,7 @@ class Player :
     public AbstractCharacter
 {
 public:
+    Player();
     Player(std::string name, float maxHealth, float minDamage, float maxDamage);
     // Inherited via AbstractCharacter
     void TakeDamage(float amount) override;
