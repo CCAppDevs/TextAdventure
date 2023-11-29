@@ -17,6 +17,11 @@ bool EncounterRoom::Execute(Game& myGame)
     return hasBeenVisited;
 }
 
+Enemy* EncounterRoom::GetEnemy()
+{
+    return theEnemy;
+}
+
 
 short EncounterRoom::ToShort()
 {

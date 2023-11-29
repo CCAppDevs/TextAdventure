@@ -1,5 +1,15 @@
 #include "AbstractCharacter.h"
 
+float AbstractCharacter::GetRandomNumber(float min, float max)
+{
+	using namespace std;
+
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_real_distribution<> distr(min, max);
+	return distr(gen);
+}
+
 AbstractCharacter::AbstractCharacter()
 {
 	Name = "";
@@ -21,7 +31,7 @@ AbstractCharacter::AbstractCharacter(std::string name, float maxHealth, float mi
 float AbstractCharacter::RollForDamage()
 {
 	// todo add random roll for damage
-	return 0.0f;
+	return GetRandomNumber(DamageMin, DamageMax);
 }
 
 std::string AbstractCharacter::GetName()

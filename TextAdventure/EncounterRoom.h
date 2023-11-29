@@ -17,6 +17,7 @@ public:
     bool Execute(Game& myGame) override;
 
     // TODO: get enemy function so that we can manipulate the enemy during combat
+    Enemy* GetEnemy();
 
     // Inherited via AbstractRoom
     short ToShort() override;

@@ -56,5 +56,6 @@ private:
 	// output text to the buffer
 	void QueueOutputText(std::string message);
 	void DrawTextOutput(float fElapsedTime);
+	void AdvanceText();
 };
 

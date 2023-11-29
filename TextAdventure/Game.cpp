@@ -22,14 +22,7 @@ void Game::StartCombat(Enemy& theEnemy)
     QueueOutputText("You have encountered an enemy. " + theEnemy.GetName() + " is preparing to attack!");
     QueueOutputText("Do you want to (A)ttack or (R)un?");
     
-        // attack
-            // get damage from player
-            // use damage to deal damage to monster
-            // allow monster to counter attack if still alive
-            // check for monster death
-                // if dead end encounter
-            // check for player death
-                // if dead end game
+
         // run
             // player takes a single hit from the enemy
             // check to see if run is successfull
@@ -81,10 +74,12 @@ bool Game::OnUserUpdate(float fElapesedTime)
     
     if (isEngaged) {
         if (GetKey(L'A').bPressed) {
+            AdvanceText();
             MakeAttack();
         }
 
         if (GetKey(L'R').bPressed) {
+            AdvanceText();
             Run();
         }
     }
@@ -94,6 +89,9 @@ bool Game::OnUserUpdate(float fElapesedTime)
         return false;
     }
 
+    if (m_keys[VK_SPACE].bPressed) {
+        AdvanceText();
+    }
 
     // clear the screen
     Fill(0, 0, m_nScreenWidth, m_nScreenHeight, L' ', 0);
@@ -124,7 +122,9 @@ bool Game::OnUserUpdate(float fElapesedTime)
     DrawTextOutput(fElapesedTime);
 
     // draw the player options
-    //DrawString(1, 50, L"Options: Arrows to Move, A to Atack, R to Run, Q to Quit");
+    std::string stats = "| " + myPlayer.GetName() + " | Health Remaining: " + to_string(myPlayer.GetHealth());
+    std::wstring playerText = std::wstring(stats.begin(), stats.end());
+    DrawString(1, 50, playerText.c_str());
     
     return true;
 }
@@ -150,6 +150,40 @@ AbstractRoom& Game::GetCurrentRoom()
 
 void Game::MakeAttack()
 {
+    // start attack
+    
+    // make an attack roll
+    
+    float damage = myPlayer.RollForDamage();
+
+    // apply the damage to the enemy
+    EncounterRoom& room = (EncounterRoom&)GetCurrentRoom();
+    room.GetEnemy()->TakeDamage(damage);
+
+    // output for success
+    QueueOutputText("You hit the " + room.GetEnemy()->GetName() + " for " + to_string(damage) + " damage!");
+    
+    if (room.GetEnemy()->GetHealth() <= 0) {
+        // enemy has died
+        QueueOutputText("You have vanquished your foe!");
+        isEngaged = false;
+        room.SetHasBeenVisited(true);
+    }
+    else {
+        float enemyDamage = room.GetEnemy()->RollForDamage();
+        myPlayer.TakeDamage(enemyDamage);
+        QueueOutputText("The enemy strikes you back for " + to_string(enemyDamage) + " damage!");
+
+        if (myPlayer.GetHealth() <= 0) {
+            QueueOutputText("You have died...");
+        }
+    }
+
+    // if both combatants are alive, continue combat
+    if (room.GetEnemy()->GetHealth() > 0 && myPlayer.GetHealth() <= 0) {
+        QueueOutputText(room.GetEnemy()->GetName() + " is preparing to attack!");
+        QueueOutputText("Do you want to (A)ttack or (R)un?");
+    }
 }
 
 void Game::Run()
@@ -181,5 +215,13 @@ void Game::DrawTextOutput(float fElapsedTime)
             // add the elapsed time to the OutputTimeElapsed
             OutputTimeElapsed += fElapsedTime;
         }
+    }
+}
+
+void Game::AdvanceText()
+{
+    if (Output.size() > 1) {
+        // set text to expire immedietly
+        OutputTimeElapsed = OutputTimeThreshold;
     }
 }

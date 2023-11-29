@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <random>
+
 class AbstractCharacter
 {
 private:
@@ -10,6 +12,8 @@ protected:
 	float MaxHealth;
 	float DamageMin;
 	float DamageMax;
+
+	float GetRandomNumber(float min, float max);
 
 public:
 	AbstractCharacter();
