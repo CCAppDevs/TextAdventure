@@ -40,7 +40,7 @@ bool Game::OnUserCreate()
 
     isEngaged = false;
 
-    OutputTimeThreshold = 10.0f;
+    OutputTimeThreshold = 3.0f;
     OutputTimeElapsed = 0.0f;
 
     myMap = new Map(mapX, mapY);
@@ -158,7 +158,7 @@ void Game::MakeAttack()
 
     // apply the damage to the enemy
     EncounterRoom& room = (EncounterRoom&)GetCurrentRoom();
-    room.GetEnemy()->TakeDamage(damage);
+    room.GetEnemy()->TakeDamage(-damage);
 
     // output for success
     QueueOutputText("You hit the " + room.GetEnemy()->GetName() + " for " + to_string(damage) + " damage!");
@@ -166,12 +166,13 @@ void Game::MakeAttack()
     if (room.GetEnemy()->GetHealth() <= 0) {
         // enemy has died
         QueueOutputText("You have vanquished your foe!");
+        room.SetComplete();
         isEngaged = false;
         room.SetHasBeenVisited(true);
     }
     else {
         float enemyDamage = room.GetEnemy()->RollForDamage();
-        myPlayer.TakeDamage(enemyDamage);
+        myPlayer.TakeDamage(-enemyDamage);
         QueueOutputText("The enemy strikes you back for " + to_string(enemyDamage) + " damage!");
 
         if (myPlayer.GetHealth() <= 0) {

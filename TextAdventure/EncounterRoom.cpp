@@ -5,6 +5,8 @@ EncounterRoom::EncounterRoom(std::string desc, std::string name, float health, f
     : AbstractRoom(desc)
 {
     theEnemy = new Enemy(name, health, minDamage, maxDamage);
+    Marker = L'M';
+    RoomColour = FG_RED;
 }
 
 bool EncounterRoom::Execute(Game& myGame)
@@ -25,10 +27,16 @@ Enemy* EncounterRoom::GetEnemy()
 
 short EncounterRoom::ToShort()
 {
-    return L'M';
+    return Marker;
 }
 
 COLOUR EncounterRoom::GetColour()
 {
-    return FG_RED;
+    return RoomColour;
+}
+
+void EncounterRoom::SetComplete()
+{
+    Marker = L'X';
+    RoomColour = FG_GREEN;
 }

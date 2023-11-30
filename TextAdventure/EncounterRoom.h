@@ -10,6 +10,8 @@ class EncounterRoom :
 {
 private:
     Enemy* theEnemy;
+    short Marker;
+    COLOUR RoomColour;
 
 public:
     EncounterRoom(std::string desc, std::string name, float health, float minDamage, float maxDamage);
@@ -22,5 +24,7 @@ public:
     // Inherited via AbstractRoom
     short ToShort() override;
     COLOUR GetColour() override;
+
+    void SetComplete();
 };
 
